@@ -9,7 +9,30 @@ use App\Models\User;
 class AuthController extends Controller
 {
 
-   
+   /**
+* @OA\Post(
+     *     path="/api/login",
+     *     summary="login user",
+     *  
+     *     @OA\Parameter(
+     *         name="email",
+     *         in="query",
+     *         description="User's email",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="password",
+     *         in="query",
+     *         description="User's password",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *   
+     *     @OA\Response(response="200", description="User created successfully"),
+     *     @OA\Response(response="422", description="Validation errors")
+     * )
+     */
     public function login(Request $request)
     {
         $request->validate([
@@ -37,7 +60,42 @@ class AuthController extends Controller
             ]);
 
     }
-
+/**
+* @OA\Post(
+     *     path="/api/register",
+     *     summary="Register a new user",
+     *     @OA\Parameter(
+     *         name="name",
+     *         in="query",
+     *         description="User's name",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="email",
+     *         in="query",
+     *         description="User's email",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="password",
+     *         in="query",
+     *         description="User's password",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="role",
+     *         in="query",
+     *         description="User's role",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response="200", description="User created successfully"),
+     *     @OA\Response(response="422", description="Validation errors")
+     * )
+     */
     public function register(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
@@ -65,7 +123,16 @@ class AuthController extends Controller
             ]
         ]);
     }
-
+/**
+* @OA\Post(
+     *     path="/api/logout",
+     *     summary="User Log Out",
+     *   
+     *    
+     *     @OA\Response(response="200", description="User created successfully"),
+     *     @OA\Response(response="422", description="Validation errors")
+     * )
+     */
     public function logout()
     {
         Auth::logout();
@@ -75,16 +142,6 @@ class AuthController extends Controller
         ]);
     }
 
-    // public function refresh()
-    // {
-    //     return response()->json([
-    //         'status' => 'success',
-    //         'user' => Auth::user(),
-    //         'authorisation' => [
-    //             'token' => Auth::refresh(),
-    //             'type' => 'bearer',
-    //         ]
-    //     ]);
-    // }
+  
 
 }
