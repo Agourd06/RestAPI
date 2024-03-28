@@ -15,8 +15,8 @@ class UserControllerTests extends TestCase
         $payload = [
             'name' => $this->faker->userName,
             'email'  => $this->faker->email,
-            'password'    => $this->faker->password,
-            'role'      => 'benevole'
+            'password'    => '123456789',
+            'role'      => 'organisateur'
         ];
         $this->json('post', 'api/register', $payload)
             ->assertStatus(Response::HTTP_OK)

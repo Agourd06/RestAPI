@@ -9,6 +9,11 @@ use App\Models\User;
 class AuthController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login','register']]);
+    }
+
    /**
 * @OA\Post(
      *     path="/api/login",
@@ -36,8 +41,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
         $credentials = $request->only('email', 'password');
 

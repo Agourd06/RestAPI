@@ -15,7 +15,7 @@ class ReservaController extends Controller
      *     summary="New reservation for event",
      *  
      *     @OA\Parameter(
-     *         name="evenement_id",
+     *         name="id",
      *         in="query",
      *         description="Event Id for reservation",
      *         required=true,
@@ -97,7 +97,7 @@ class ReservaController extends Controller
          'statut' => $request->Newstatut,
      ]);
      return response()->json([
-         'status' => 'success',
+         'statut' => 'success',
          'message' => 'Reservation status updated successfully',
      ], 200);
  }

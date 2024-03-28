@@ -59,7 +59,7 @@ class ReservaControllerTests extends TestCase
             ->json('put', "api/updateStatut/$Resrv->id", $payload)
             ->assertStatus(Response::HTTP_OK)
             ->assertExactJson([
-                'message' => 'reseravtion checked successfully',
+                'message' => 'Reservation status updated successfully',
                 'statut' => 'success',
             ]);
     }
